@@ -1,0 +1,400 @@
+require("kanagawa").setup({
+  compile = false,  -- enable compiling the colorscheme
+  undercurl = true, -- enable undercurls
+  commentStyle = { italic = true },
+  functionStyle = {},
+  keywordStyle = { italic = true },
+  statementStyle = { bold = true },
+  typeStyle = {},
+  transparent = true,    -- do not set background color
+  dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+  terminalColors = true, -- define vim.g.terminal_color_{0,17}
+  colors = {             -- add/modify theme and palette colors
+    palette = {},
+    theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+  },
+  overrides = function(colors) -- add/modify highlights
+    return {
+      LineNr = { fg = colors.palette.fujiGray, bg = "NONE" },
+      -- LineNr = { bg="NONE" }
+    }
+  end,
+  theme = "wave",  -- Load "wave" theme when 'background' option is not set
+  background = {   -- map the value of 'background' option to a theme
+    dark = "wave", -- try "dragon" !
+    light = "lotus",
+  },
+})
+
+-- -- Default options:
+-- require("gruvbox").setup({
+--   terminal_colors = true, -- add neovim terminal colors
+--   undercurl = true,
+--   underline = true,
+--   bold = true,
+--   italic = {
+--     strings = true,
+--     emphasis = true,
+--     comments = true,
+--     operators = false,
+--     folds = true,
+--   },
+--   strikethrough = true,
+--   invert_selection = false,
+--   invert_signs = false,
+--   invert_tabline = false,
+--   invert_intend_guides = false,
+--   inverse = true, -- invert background for search, diffs, statuslines and errors
+--   contrast = "",  -- can be "hard", "soft" or empty string
+--   palette_overrides = {},
+--   overrides = {},
+--   dim_inactive = false,
+--   transparent_mode = true,
+-- })
+--
+-- require('kanagawa-paper').setup({
+--   undercurl = true,
+--   transparent = true,
+--   gutter = false,
+--   dimInactive = true, -- disabled when transparent
+--   terminalColors = true,
+--   commentStyle = { italic = true },
+--   functionStyle = { italic = false },
+--   keywordStyle = { italic = false, bold = false },
+--   statementStyle = { italic = false, bold = false },
+--   typeStyle = { italic = false },
+--   colors = { theme = {}, palette = {} }, -- override default palette and theme colors
+--   overrides = function()                 -- override highlight groups
+--     return {}
+--   end,
+-- })
+--
+-- -- require 'nordic'.setup {
+-- --   -- This callback can be used to override the colors used in the palette.
+-- --   on_palette = function(palette) return palette end,
+-- --   -- Enable bold keywords.
+-- --   bold_keywords = false,
+-- --   -- Enable italic comments.
+-- --   italic_comments = true,
+-- --   -- Enable general editor background transparency.
+-- --   transparent_bg = false,
+-- --   -- Enable brighter float border.
+-- --   bright_border = false,
+-- --   -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+-- --   reduced_blue = true,
+-- --   -- Swap the dark background with the normal one.
+-- --   swap_backgrounds = true,
+-- --   -- Override the styling of any highlight group.
+-- --   override = {},
+-- --   -- Cursorline options.  Also includes visual/selection.
+-- --   cursorline = {
+-- --     -- Bold font in cursorline.
+-- --     bold = false,
+-- --     -- Bold cursorline number.
+-- --     bold_number = true,
+-- --     -- Available styles: 'dark', 'light'.
+-- --     theme = 'dark',
+-- --     -- Blending the cursorline bg with the buffer bg.
+-- --     blend = 0.85,
+-- --   },
+-- --   noice = {
+-- --     -- Available styles: `classic`, `flat`.
+-- --     style = 'classic',
+-- --   },
+-- --   telescope = {
+-- --     -- Available styles: `classic`, `flat`.
+-- --     style = 'flat',
+-- --   },
+-- --   leap = {
+-- --     -- Dims the backdrop when using leap.
+-- --     dim_backdrop = false,
+-- --   },
+-- --   ts_context = {
+-- --     -- Enables dark background for treesitter-context window
+-- --     dark_background = true,
+-- --   }
+-- -- }
+--
+-- require("moonfly").custom_colors({
+--   bg = "",
+--   -- violet = "#ff74b8",
+-- })
+--
+-- require("rose-pine").setup({
+--   variant = "main",      -- auto, main, moon, or dawn
+--   dark_variant = "main", -- main, moon, or dawn
+--   dim_inactive_windows = false,
+--   extend_background_behind_borders = true,
+--
+--   enable = {
+--     terminal = true,
+--     legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+--     migrations = true,        -- Handle deprecated options automatically
+--   },
+--
+--   styles = {
+--     bold = true,
+--     italic = true,
+--     transparency = true,
+--   },
+--
+--   groups = {
+--     border = "muted",
+--     link = "iris",
+--     panel = "surface",
+--
+--     error = "love",
+--     hint = "iris",
+--     info = "foam",
+--     note = "pine",
+--     todo = "rose",
+--     warn = "gold",
+--
+--     git_add = "foam",
+--     git_change = "rose",
+--     git_delete = "love",
+--     git_dirty = "rose",
+--     git_ignore = "muted",
+--     git_merge = "iris",
+--     git_rename = "pine",
+--     git_stage = "iris",
+--     git_text = "rose",
+--     git_untracked = "subtle",
+--
+--     h1 = "iris",
+--     h2 = "foam",
+--     h3 = "rose",
+--     h4 = "gold",
+--     h5 = "pine",
+--     h6 = "foam",
+--   },
+--
+--   highlight_groups = {
+--     -- Comment = { fg = "foam" },
+--     -- VertSplit = { fg = "muted", bg = "muted" },
+--   },
+--
+--   before_highlight = function(group, highlight, palette)
+--     -- Disable all undercurls
+--     -- if highlight.undercurl then
+--     --     highlight.undercurl = false
+--     -- end
+--     --
+--     -- Change palette colour
+--     -- if highlight.fg == palette.pine then
+--     --     highlight.fg = palette.foam
+--     -- end
+--   end,
+-- })
+-- -- vim.g.nord_disable_background = true
+--
+-- require('darkvoid').setup({
+--   transparent = true,        -- set true for transparent
+--   glow = false,              -- set true for glow effect
+--   show_end_of_buffer = true, -- set false for not showing end of buffer
+--   colors = {
+--     fg = "#c0c0c0",
+--     bg = "#1c1c1c",
+--     cursor = "#bdfe58",
+--     line_nr = "#404040",
+--     visual = "#303030",
+--     comment = "#585858",
+--     string = "#d1d1d1",
+--     func = "#e1e1e1",
+--     kw = "#f1f1f1",
+--     identifier = "#b1b1b1",
+--     type = "#a1a1a1",
+--     search_highlight = "#1bfd9c",
+--     operator = "#1bfd9c",
+--     bracket = "#e6e6e6",
+--     preprocessor = "#4b8902",
+--     bool = "#66b2b2",
+--     constant = "#b2d8d8",
+--
+--     -- gitsigns colors
+--     added = "#baffc9",
+--     changed = "#ffffba",
+--     removed = "#ffb3ba",
+--
+--     -- Pmenu colors
+--     pmenu_bg = "#1c1c1c",
+--     pmenu_sel_bg = "#1bfd9c",
+--     pmenu_fg = "#c0c0c0",
+--
+--     -- EndOfBuffer color
+--     eob = "#3c3c3c",
+--
+--     -- Telescope specific colors
+--     border = "#585858",
+--     title = "#bdfe58",
+--
+--     -- bufferline specific colors
+--     -- change this to change the colors of current or selected tab
+--     bufferline_selection = "#bdfe58",
+--
+--     -- LSP diagnostics colors
+--     error = "#dea6a0",
+--     warning = "#D0B8A8",
+--     hint = "#BEDC74",
+--     info = "#7FA1C3",
+--   },
+-- })
+--
+-- -- vim.o.background = 'dark'
+--
+-- -- default config
+-- require('solarized').setup({
+--   transparent = true,    -- enable transparent background
+--   palette = 'solarized', -- or selenized
+--   styles = {
+--     comments = {},
+--     functions = {},
+--     variables = {},
+--     numbers = {},
+--     constants = {},
+--     parameters = {},
+--     keywords = {},
+--     types = {},
+--   },
+--   enables = {
+--     bufferline = true,
+--     cmp = true,
+--     diagnostic = true,
+--     dashboard = true,
+--     editor = true,
+--     gitsign = true,
+--     hop = true,
+--     indentblankline = true,
+--     lsp = true,
+--     lspsaga = true,
+--     navic = true,
+--     neogit = true,
+--     neotree = true,
+--     notify = true,
+--     noice = true,
+--     semantic = true,
+--     syntax = true,
+--     telescope = true,
+--     tree = true,
+--     treesitter = true,
+--     todo = true,
+--     whichkey = true,
+--     mini = true,
+--   },
+--   highlights = {
+--     -- IndentBlanklineChar = { char = { fg = "#FF0D00", bg = "#FF0D00" } },
+--   },
+--   colors = {},
+--   theme = 'default', -- or 'neo'
+--   autocmd = true,
+-- })
+--
+-- require('poimandres').setup {
+--   bold_vert_split = false,          -- use bold vertical separators
+--   dim_nc_background = false,        -- dim 'non-current' window backgrounds
+--   disable_background = false,       -- disable background
+--   disable_float_background = false, -- disable background for floats
+--   disable_italics = false,          -- disable italics
+-- }
+--
+-- -- require("nord").setup({
+-- --   -- your configuration comes here
+-- --   -- or leave it empty to use the default settings
+-- --   transparent = true,         -- Enable this to disable setting the background color
+-- --   terminal_colors = true,     -- Configure the colors used when opening a `:terminal` in Neovim
+-- --   diff = { mode = "bg" },     -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
+-- --   borders = true,             -- Enable the border between verticaly split windows visible
+-- --   errors = { mode = "bg" },   -- Display mode for errors and diagnostics
+-- --   -- values : [bg|fg|none]
+-- --   search = { theme = "vim" }, -- theme for highlighting search results
+-- --   -- values : [vim|vscode]
+-- --   styles = {
+-- --     -- Style to be applied to different syntax groups
+-- --     -- Value is any valid attr-list value for `:help nvim_set_hl`
+-- --     comments = { italic = true },
+-- --     keywords = {},
+-- --     functions = {},
+-- --     variables = {},
+-- --
+-- --     -- To customize lualine/bufferline
+-- --     bufferline = {
+-- --       current = {},
+-- --       modified = { italic = true },
+-- --     },
+-- --   },
+-- --
+-- --   -- colorblind mode
+-- --   -- see https://github.com/EdenEast/nightfox.nvim#colorblind
+-- --   -- simulation mode has not been implemented yet.
+-- --   colorblind = {
+-- --     enable = false,
+-- --     preserve_background = false,
+-- --     severity = {
+-- --       protan = 0.0,
+-- --       deutan = 0.0,
+-- --       tritan = 0.0,
+-- --     },
+-- --   },
+-- --
+-- --   --- You can override specific highlights to use other groups or a hex color
+-- --   --- function will be called with all highlights and the colorScheme table
+-- --   on_highlights = function(highlights, colors) end,
+-- -- })
+--
+-- vim.cmd("colorscheme poimandres")
+
+-- require("mellifluous").setup({
+--   dim_inactive = false,
+--   color_set = "mellifluous",
+--   styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
+--     comments = { italic = true },
+--     conditionals = {},
+--     folds = {},
+--     loops = {},
+--     functions = {},
+--     keywords = {},
+--     strings = {},
+--     variables = {},
+--     numbers = {},
+--     booleans = {},
+--     properties = {},
+--     types = {},
+--     operators = {},
+--     markup = {
+--       headings = { bold = true },
+--     },
+--   },
+--   transparent_background = {
+--     enabled = false,
+--     floating_windows = true,
+--     telescope = true,
+--     file_tree = true,
+--     cursor_line = true,
+--     status_line = false,
+--   },
+--   flat_background = {
+--     line_numbers = false,
+--     floating_windows = false,
+--     file_tree = false,
+--     cursor_line_number = false,
+--   },
+--   plugins = {
+--     cmp = true,
+--     gitsigns = true,
+--     indent_blankline = true,
+--     nvim_tree = {
+--       enabled = true,
+--       show_root = false,
+--     },
+--     neo_tree = {
+--       enabled = true,
+--     },
+--     telescope = {
+--       enabled = true,
+--       nvchad_like = true,
+--     },
+--     startify = true,
+--   },
+-- })
+
+vim.cmd("colorscheme kanagawa")
