@@ -169,7 +169,7 @@ smart_borders on
 
 for_window [class=".*"] border pixel 3
 
-gaps outer 0
+gaps outer -10
 gaps inner 20
 
 #-----THEME-----
