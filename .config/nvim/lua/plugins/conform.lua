@@ -5,7 +5,6 @@ return {
     keys = {
         {
             "<leader>cf",
-            -- "<C-s>",
             function()
                 require("conform").format({ async = true }, function(err, did_edit)
                     if not err and did_edit then
@@ -42,7 +41,7 @@ return {
             python = { "isort", "black" },
 
             -- PHP/Laravel
-            php = { "pint" },
+            -- php = { "pint" },
 
             -- Shell
             sh = { "shfmt" },
