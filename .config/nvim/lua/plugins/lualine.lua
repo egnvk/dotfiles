@@ -58,7 +58,7 @@ return {
 
 		lualine.setup({
 			options = {
-				theme = "gruvbox-material",
+				theme = "kanso-zen",
 				globalstatus = true,
 				section_separators = "",
 				component_separators = "",
