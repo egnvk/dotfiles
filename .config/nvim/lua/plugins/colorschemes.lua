@@ -365,7 +365,7 @@ return {
 		enabled = true,
 		priority = 1000,
 		config = function()
-			vim.g.gruvbox_material_transparent_background = 0
+			vim.g.gruvbox_material_transparent_background = 1
 			vim.g.gruvbox_material_foreground = "mix"
 			vim.g.gruvbox_material_background = "hard"
 			vim.g.gruvbox_material_ui_contrast = "high"
@@ -376,7 +376,7 @@ return {
 			-- vim.g.gruvbox_material_colors_override = { bg0 = '#16181A' } -- #0e1010
 			vim.g.gruvbox_material_better_performance = 1
 
-			-- vim.cmd.colorscheme("gruvbox-material")
+			vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
 	{
@@ -394,8 +394,7 @@ return {
 				floats = "dark",
 			},
 		},
-		config = function(_, opts)
-			require("tokyonight").setup(opts)
+		config = function()
 			-- vim.cmd.colorscheme("tokyonight-moon")
 		end,
 	},
@@ -405,7 +404,6 @@ return {
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			-- load the colorscheme here
-			-- require("night-owl").setup()
 			-- vim.cmd.colorscheme("night-owl")
 		end,
 	},
@@ -413,7 +411,6 @@ return {
 		"ramojus/mellifluous.nvim",
 		-- version = "v0.*", -- uncomment for stable config (some features might be missed if/when v1 comes out)
 		config = function()
-			-- require("mellifluous").setup({}) -- optional, see configuration section.
 			-- vim.cmd("colorscheme mellifluous")
 		end,
 	},
@@ -430,7 +427,6 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			-- vim.cmd.colorscheme("oldworld")
 			-- vim.cmd("colorscheme oldworld")
 		end,
 	},
@@ -439,7 +435,6 @@ return {
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
-			-- vim.cmd [[ colorscheme NeoSolarized ]]
 			-- vim.cmd("colorscheme NeoSolarized")
 		end,
 	},
@@ -455,7 +450,6 @@ return {
 
 		config = function()
 			-- vim.cmd("colorscheme solarized-osaka")
-			-- vim.cmd[[colorscheme solarized-osaka]]
 		end,
 	},
 	{
@@ -492,7 +486,7 @@ return {
 		end,
 
 		config = function()
-			vim.cmd("colorscheme kanso-zen")
+			-- vim.cmd("colorscheme kanso-zen")
 		end,
 	},
 }

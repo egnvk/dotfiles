@@ -12,14 +12,27 @@ set.shiftwidth = 2
 
 set.swapfile = false
 
-set.splitbelow = true  -- force all horizontal splits to go below current window
+set.splitbelow = true -- force all horizontal splits to go below current window
 set.splitright = true
 set.breakindent = true -- wrap lines with i
 set.signcolumn = "yes:1"
 
 local get_option = vim.filetype.get_option
 vim.filetype.get_option = function(filetype, option)
-	return option == "commentstring"
-			and require("ts_context_commentstring.internal").calculate_commentstring()
-			or get_option(filetype, option)
+	return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+		or get_option(filetype, option)
 end
+
+vim.filetype.add({
+	extension = {
+		env = "dotenv",
+	},
+	filename = {
+		[".env"] = "dotenv",
+		["env"] = "dotenv",
+	},
+	pattern = {
+		["[jt]sconfig.*.json"] = "jsonc",
+		["%.env%.[%w_.-]+"] = "dotenv",
+	},
+})

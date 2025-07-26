@@ -1,6 +1,6 @@
 return {
-	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	"nvim-lualine/lualine.nvim",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 
 	config = function()
 		local icon = require("config.icons-2")
@@ -58,7 +58,8 @@ return {
 
 		lualine.setup({
 			options = {
-				theme = "kanso-zen",
+				-- theme = "kanso-zen",
+				theme = "gruvbox-material",
 				globalstatus = true,
 				section_separators = "",
 				component_separators = "",
