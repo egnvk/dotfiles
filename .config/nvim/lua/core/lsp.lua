@@ -1,8 +1,14 @@
 vim.lsp.enable({
 	"lua-ls",
 	"gopls",
+	"zls",
 	"ts-ls",
 	"rust-analyzer",
+	"intelephense",
+	"tailwindcss",
+	"html-ls",
+	"css-ls",
+	"vue-ls",
 })
 
 vim.diagnostic.config({
@@ -11,7 +17,7 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	severity_sort = true,
 	float = {
-		-- border = "rounded",
+		border = "rounded",
 		source = true,
 	},
 	signs = {
@@ -27,7 +33,6 @@ vim.diagnostic.config({
 		},
 	},
 })
-
 
 -- Extras
 
@@ -48,18 +53,18 @@ local function restart_lsp(bufnr)
 	end
 
 	vim.defer_fn(function()
-		vim.cmd('edit')
+		vim.cmd("edit")
 	end, 100)
 end
 
-vim.api.nvim_create_user_command('LspRestart', function()
+vim.api.nvim_create_user_command("LspRestart", function()
 	restart_lsp()
 end, {})
 
 local function lsp_status()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr }) or
-			vim.lsp.get_active_clients({ bufnr = bufnr })
+	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr })
+		or vim.lsp.get_active_clients({ bufnr = bufnr })
 
 	if #clients == 0 then
 		print("󰅚 No LSP clients attached")
@@ -78,25 +83,39 @@ local function lsp_status()
 		local caps = client.server_capabilities
 		local features = {}
 
-		if caps.completionProvider then table.insert(features, "completion") end
-		if caps.hoverProvider then table.insert(features, "hover") end
-		if caps.definitionProvider then table.insert(features, "definition") end
-		if caps.referencesProvider then table.insert(features, "references") end
-		if caps.renameProvider then table.insert(features, "rename") end
-		if caps.codeActionProvider then table.insert(features, "code_action") end
-		if caps.documentFormattingProvider then table.insert(features, "formatting") end
+		if caps.completionProvider then
+			table.insert(features, "completion")
+		end
+		if caps.hoverProvider then
+			table.insert(features, "hover")
+		end
+		if caps.definitionProvider then
+			table.insert(features, "definition")
+		end
+		if caps.referencesProvider then
+			table.insert(features, "references")
+		end
+		if caps.renameProvider then
+			table.insert(features, "rename")
+		end
+		if caps.codeActionProvider then
+			table.insert(features, "code_action")
+		end
+		if caps.documentFormattingProvider then
+			table.insert(features, "formatting")
+		end
 
 		print("  Features: " .. table.concat(features, ", "))
 		print("")
 	end
 end
 
-vim.api.nvim_create_user_command('LspStatus', lsp_status, { desc = "Show detailed LSP status" })
+vim.api.nvim_create_user_command("LspStatus", lsp_status, { desc = "Show detailed LSP status" })
 
 local function check_lsp_capabilities()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr }) or
-			vim.lsp.get_active_clients({ bufnr = bufnr })
+	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr })
+		or vim.lsp.get_active_clients({ bufnr = bufnr })
 
 	if #clients == 0 then
 		print("No LSP clients attached")
@@ -108,24 +127,24 @@ local function check_lsp_capabilities()
 		local caps = client.server_capabilities
 
 		local capability_list = {
-			{ "Completion",                caps.completionProvider },
-			{ "Hover",                     caps.hoverProvider },
-			{ "Signature Help",            caps.signatureHelpProvider },
-			{ "Go to Definition",          caps.definitionProvider },
-			{ "Go to Declaration",         caps.declarationProvider },
-			{ "Go to Implementation",      caps.implementationProvider },
-			{ "Go to Type Definition",     caps.typeDefinitionProvider },
-			{ "Find References",           caps.referencesProvider },
-			{ "Document Highlight",        caps.documentHighlightProvider },
-			{ "Document Symbol",           caps.documentSymbolProvider },
-			{ "Workspace Symbol",          caps.workspaceSymbolProvider },
-			{ "Code Action",               caps.codeActionProvider },
-			{ "Code Lens",                 caps.codeLensProvider },
-			{ "Document Formatting",       caps.documentFormattingProvider },
+			{ "Completion", caps.completionProvider },
+			{ "Hover", caps.hoverProvider },
+			{ "Signature Help", caps.signatureHelpProvider },
+			{ "Go to Definition", caps.definitionProvider },
+			{ "Go to Declaration", caps.declarationProvider },
+			{ "Go to Implementation", caps.implementationProvider },
+			{ "Go to Type Definition", caps.typeDefinitionProvider },
+			{ "Find References", caps.referencesProvider },
+			{ "Document Highlight", caps.documentHighlightProvider },
+			{ "Document Symbol", caps.documentSymbolProvider },
+			{ "Workspace Symbol", caps.workspaceSymbolProvider },
+			{ "Code Action", caps.codeActionProvider },
+			{ "Code Lens", caps.codeLensProvider },
+			{ "Document Formatting", caps.documentFormattingProvider },
 			{ "Document Range Formatting", caps.documentRangeFormattingProvider },
-			{ "Rename",                    caps.renameProvider },
-			{ "Folding Range",             caps.foldingRangeProvider },
-			{ "Selection Range",           caps.selectionRangeProvider },
+			{ "Rename", caps.renameProvider },
+			{ "Folding Range", caps.foldingRangeProvider },
+			{ "Selection Range", caps.selectionRangeProvider },
 		}
 
 		for _, cap in ipairs(capability_list) do
@@ -136,7 +155,7 @@ local function check_lsp_capabilities()
 	end
 end
 
-vim.api.nvim_create_user_command('LspCapabilities', check_lsp_capabilities, { desc = "Show LSP capabilities" })
+vim.api.nvim_create_user_command("LspCapabilities", check_lsp_capabilities, { desc = "Show LSP capabilities" })
 
 local function lsp_diagnostics_info()
 	local bufnr = vim.api.nvim_get_current_buf()
@@ -157,13 +176,12 @@ local function lsp_diagnostics_info()
 	print("  Total: " .. #diagnostics)
 end
 
-vim.api.nvim_create_user_command('LspDiagnostics', lsp_diagnostics_info, { desc = "Show LSP diagnostics count" })
-
+vim.api.nvim_create_user_command("LspDiagnostics", lsp_diagnostics_info, { desc = "Show LSP diagnostics count" })
 
 local function lsp_info()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr }) or
-			vim.lsp.get_active_clients({ bufnr = bufnr })
+	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr })
+		or vim.lsp.get_active_clients({ bufnr = bufnr })
 
 	print("═══════════════════════════════════")
 	print("           LSP INFORMATION          ")
@@ -223,11 +241,21 @@ local function lsp_info()
 		-- Key capabilities
 		local caps = client.server_capabilities
 		local key_features = {}
-		if caps.completionProvider then table.insert(key_features, "completion") end
-		if caps.hoverProvider then table.insert(key_features, "hover") end
-		if caps.definitionProvider then table.insert(key_features, "definition") end
-		if caps.documentFormattingProvider then table.insert(key_features, "formatting") end
-		if caps.codeActionProvider then table.insert(key_features, "code_action") end
+		if caps.completionProvider then
+			table.insert(key_features, "completion")
+		end
+		if caps.hoverProvider then
+			table.insert(key_features, "hover")
+		end
+		if caps.definitionProvider then
+			table.insert(key_features, "definition")
+		end
+		if caps.documentFormattingProvider then
+			table.insert(key_features, "formatting")
+		end
+		if caps.codeActionProvider then
+			table.insert(key_features, "code_action")
+		end
 
 		if #key_features > 0 then
 			print("  Key features: " .. table.concat(key_features, ", "))
@@ -262,24 +290,23 @@ local function lsp_info()
 end
 
 -- Create command
-vim.api.nvim_create_user_command('LspInfo', lsp_info, { desc = "Show comprehensive LSP information" })
+vim.api.nvim_create_user_command("LspInfo", lsp_info, { desc = "Show comprehensive LSP information" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local bufnr = args.buf
 		local opts = { noremap = true, silent = true, buffer = bufnr }
-		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	end,
 })
 
-
 local function lsp_status_short()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr }) or
-			vim.lsp.get_active_clients({ bufnr = bufnr })
+	local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = bufnr })
+		or vim.lsp.get_active_clients({ bufnr = bufnr })
 
 	if #clients == 0 then
-		return ""     -- Return empty string when no LSP
+		return "" -- Return empty string when no LSP
 	end
 
 	local names = {}
@@ -319,12 +346,12 @@ _G.lsp_status = safe_lsp_status
 
 -- THEN set the statusline
 vim.opt.statusline = table.concat({
-	"%{v:lua.git_branch()}",   -- Git branch
-	"%f",                      -- File name
-	"%m",                      -- Modified flag
-	"%r",                      -- Readonly flag
-	"%=",                      -- Right align
-	"%{v:lua.lsp_status()}",   -- LSP status
-	" %l:%c",                  -- Line:Column
-	" %p%%"                    -- Percentage through file
+	"%{v:lua.git_branch()}", -- Git branch
+	"%f", -- File name
+	"%m", -- Modified flag
+	"%r", -- Readonly flag
+	"%=", -- Right align
+	"%{v:lua.lsp_status()}", -- LSP status
+	" %l:%c", -- Line:Column
+	" %p%%", -- Percentage through file
 }, " ")
