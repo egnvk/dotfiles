@@ -68,10 +68,10 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "buffers" },
-				lualine_c = { lsp_status, "codecompanion", "supermaven" },
-				lualine_x = { diff, diagnostics, filetype },
+				lualine_c = { "codecompanion", "supermaven" },
+				lualine_x = { "selectioncount", lsp_status, diff, diagnostics, filetype },
 				lualine_y = {},
-				lualine_z = { "tabs" },
+				lualine_z = { "progress", "tabs" },
 			},
 		})
 	end,
