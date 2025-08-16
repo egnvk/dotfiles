@@ -67,7 +67,7 @@ return {
 						crust = "#141617",
 					},
 				},
-				transparent_background = false,
+				transparent_background = true,
 				show_end_of_buffer = false,
 				integration_default = false,
 				no_bold = true,
@@ -357,7 +357,7 @@ return {
 			vim.api.nvim_set_hl(0, "NavicText", { default = true, bg = "none", fg = "#eedaad" })
 			vim.api.nvim_set_hl(0, "NavicSeparator", { default = true, bg = "none", fg = "#eedaad" })
 
-			-- vim.api.nvim_command("colorscheme catppuccin")
+			vim.api.nvim_command("colorscheme catppuccin")
 		end,
 	},
 	{
@@ -376,25 +376,26 @@ return {
 			-- vim.g.gruvbox_material_colors_override = { bg0 = '#16181A' } -- #0e1010
 			vim.g.gruvbox_material_better_performance = 1
 
-			vim.cmd.colorscheme("gruvbox-material")
+			-- vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-			transparent = true,
-			styles = {
-				comments = { italic = false },
-				keywords = { italic = false },
-				functions = {},
-				variables = {},
-				sidebars = "dark",
-				floats = "dark",
-			},
-		},
 		config = function()
+			require("tokyonight").setup({
+				transparent = true,
+				styles = {
+					comments = { italic = false },
+					keywords = { italic = false },
+					functions = {},
+					variables = {},
+					sidebars = "dark",
+					floats = "dark",
+				},
+			})
+
 			-- vim.cmd.colorscheme("tokyonight-moon")
 		end,
 	},
@@ -411,6 +412,10 @@ return {
 		"ramojus/mellifluous.nvim",
 		-- version = "v0.*", -- uncomment for stable config (some features might be missed if/when v1 comes out)
 		config = function()
+			-- require("mellifluous").setup({
+			-- 	transparent = true,
+			-- })
+
 			-- vim.cmd("colorscheme mellifluous")
 		end,
 	},
@@ -427,6 +432,15 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
+			require("oldworld").setup({
+				styles = {
+					booleans = { italic = true, bold = true },
+				},
+				integrations = {
+					-- hop = true,
+					telescope = false,
+				},
+			})
 			-- vim.cmd("colorscheme oldworld")
 		end,
 	},
@@ -456,37 +470,13 @@ return {
 		"webhooked/kanso.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = function()
-			require("kanso").setup({
-				bold = true, -- enable bold fonts
-				italics = true, -- enable italics
-				compile = false, -- enable compiling the colorscheme
-				undercurl = true, -- enable undercurls
-				commentStyle = { italic = true },
-				functionStyle = {},
-				keywordStyle = { italic = true },
-				statementStyle = {},
-				typeStyle = {},
-				transparent = true, -- do not set background color
-				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-				terminalColors = true, -- define vim.g.terminal_color_{0,17}
-				colors = { -- add/modify theme and palette colors
-					palette = {},
-					theme = { zen = {}, pearl = {}, ink = {}, all = {} },
-				},
-				overrides = function(colors) -- add/modify highlights
-					return {}
-				end,
-				background = { -- map the value of 'background' option to a theme
-					dark = "ink", -- try "zen" !
-					light = "pearl", -- try "mist" !
-				},
-				foreground = "default", -- "default" or "contrast" (can also be a table like background)
-			})
-		end,
-
+		opts = {
+			background = "zen",
+		},
 		config = function()
 			-- vim.cmd("colorscheme kanso-zen")
+			-- require("kanso").load("zen")
+			-- require("kanso")
 		end,
 	},
 }
