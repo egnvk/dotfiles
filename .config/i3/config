@@ -4,7 +4,8 @@
 set $mod Mod4 
 
 # font pango:ComicShannsMono Nerd Font 16
-font pango:Maple Mono NF CN Medium 16
+# font pango:Maple Mono NF CN Medium 16
+font pango:Ioskeley Mono Medium 16
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -18,8 +19,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -45,7 +46,7 @@ exec_always --no-startup-id numlockx on
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec_always --no-startup-id feh --bg-fill ~/.wallpapers/mountain2.jpg
+exec_always --no-startup-id feh --bg-fill ~/.wallpapers/forest-landscape-in-the-moonlight.jpg
 
 bindsym Print exec flameshot gui 
 
@@ -147,16 +148,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym j resize shrink width 2 px or 2 ppt
+        bindsym k resize grow height 2 px or 2 ppt
+        bindsym l resize shrink height 2 px or 2 ppt
+        bindsym semicolon resize grow width 2 px or 2 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 2 px or 2 ppt
+        bindsym Down resize grow height 2 px or 2 ppt
+        bindsym Up resize shrink height 2 px or 2 ppt
+        bindsym Right resize grow width 2 px or 2 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -192,8 +193,18 @@ client.background       #2b3339
 
 # green gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $blue $green $darkgray $purple $aqua
-client.focused_inactive $darkgray $darkgray $gray $purple $gray
-client.unfocused        $darkgray $darkgray $gray $purple $gray
-client.urgent           $red $red $white $red $red
+# client.focused          $blue $green $darkgray $purple #82aaff
+# client.focused_inactive $darkgray $darkgray $gray $purple $gray
+# client.unfocused        $darkgray $darkgray $gray $purple $gray
+# client.urgent           $red $red $white $red $red
+
+# Window color settings darkvoid
+# class                 border  backgr. text    indicator
+client.focused          #7a7a7a #7a7a7a #e1e1e1 #1bfd9c 
+client.unfocused        #2e3440 #1f222d #888888 #1f222d
+client.focused_inactive #2e3440 #1f222d #888888 #1f222d
+client.placeholder      #2e3440 #1f222d #888888 #1f222d
+client.urgent           #900000 #900000 #ffffff #900000
+
+client.background       #242424
 

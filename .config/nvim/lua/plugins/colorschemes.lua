@@ -357,7 +357,7 @@ return {
 			vim.api.nvim_set_hl(0, "NavicText", { default = true, bg = "none", fg = "#eedaad" })
 			vim.api.nvim_set_hl(0, "NavicSeparator", { default = true, bg = "none", fg = "#eedaad" })
 
-			vim.api.nvim_command("colorscheme catppuccin")
+			-- vim.api.nvim_command("colorscheme catppuccin")
 		end,
 	},
 	{
@@ -367,10 +367,10 @@ return {
 		config = function()
 			vim.g.gruvbox_material_transparent_background = 1
 			vim.g.gruvbox_material_foreground = "mix"
-			vim.g.gruvbox_material_background = "hard"
-			vim.g.gruvbox_material_ui_contrast = "high"
+			vim.g.gruvbox_material_background = "soft"
+			vim.g.gruvbox_material_ui_contrast = "soft"
 			vim.g.gruvbox_material_float_style = "bright"
-			vim.g.gruvbox_material_statusline_style = "material"
+			vim.g.gruvbox_material_statusline_style = "mix" -- "mix", "original", "afterglow"
 			vim.g.gruvbox_material_cursor = "auto"
 
 			-- vim.g.gruvbox_material_colors_override = { bg0 = '#16181A' } -- #0e1010
@@ -445,14 +445,6 @@ return {
 		end,
 	},
 	{
-		"Tsuzat/NeoSolarized.nvim",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			-- vim.cmd("colorscheme NeoSolarized")
-		end,
-	},
-	{
 		"craftzdog/solarized-osaka.nvim",
 		lazy = false,
 		priority = 1000,
@@ -477,6 +469,276 @@ return {
 			-- vim.cmd("colorscheme kanso-zen")
 			-- require("kanso").load("zen")
 			-- require("kanso")
+		end,
+	},
+	{
+		"sainnhe/everforest",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			-- Optionally configure and load the colorscheme
+			-- directly inside the plugin declaration.
+			vim.g.everforest_enable_italic = true
+			vim.g.everforest_transparent_background = 1
+			-- vim.cmd.colorscheme("everforest")
+		end,
+	},
+	{
+		"olivercederborg/poimandres.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("poimandres").setup({
+				-- leave this setup function empty for default config
+				-- or refer to the configuration section
+				-- for configuration options
+				disable_background = true, -- disable background
+			})
+		end,
+
+		-- optionally set the colorscheme within lazy config
+		init = function()
+			-- vim.cmd("colorscheme poimandres")
+		end,
+	},
+	{
+		"armannikoyan/rusty",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = true,
+			italic_comments = true,
+			underline_current_line = true,
+			-- colors = {
+			-- 	foreground = "#c5c8c6",
+			-- 	background = "#1d1f21",
+			-- 	selection = "#373b41",
+			-- 	line = "#282a2e",
+			-- 	comment = "#969896",
+			-- 	red = "#cc6666",
+			-- 	orange = "#de935f",
+			-- 	yellow = "#f0c674",
+			-- 	green = "#b5bd68",
+			-- 	aqua = "#8abeb7",
+			-- 	blue = "#81a2be",
+			-- 	purple = "#b294bb",
+			-- 	window = "#4d5057",
+			-- },
+		},
+		config = function(_, opts)
+			-- require("rusty").setup(opts)
+			-- vim.cmd("colorscheme rusty")
+		end,
+	},
+	{
+		"tiagovla/tokyodark.nvim",
+		opts = {
+			transparent_background = true,
+		},
+		config = function(_, opts)
+			require("tokyodark").setup(opts) -- calling setup is optional
+			-- vim.cmd([[colorscheme tokyodark]])
+		end,
+	},
+	{
+		"eldritch-theme/eldritch.nvim",
+		lazy = false,
+		priority = 1000,
+
+		opts = {
+			transparent = true,
+		},
+
+		config = function(_, opts)
+			require("eldritch").setup(opts)
+			-- vim.cmd([[colorscheme eldritch]])
+		end,
+	},
+	{
+		"bluz71/vim-nightfly-colors",
+		name = "nightfly",
+		lazy = false,
+		priority = 1000,
+
+		config = function(_)
+			-- vim.cmd([[colorscheme nightfly]])
+			-- vim.g.nightflyTransparent = true
+		end,
+	},
+	{
+		"shaunsingh/nord.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.g.nord_disable_background = true
+			-- vim.cmd.colorscheme("nord")
+		end,
+	},
+	{
+		"Tsuzat/NeoSolarized.nvim",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			-- vim.cmd([[ colorscheme NeoSolarized ]])
+		end,
+	},
+	{
+		"aliqyan-21/darkvoid.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("darkvoid").setup({
+				transparent = true,
+				glow = false,
+				show_end_of_buffer = true,
+
+				colors = {
+					plugins = {
+						gitsigns = true,
+						nvim_cmp = true,
+						treesitter = true,
+						nvimtree = true,
+						telescope = true,
+						lualine = false, -- here make lualine support off and you are good to go.
+						bufferline = true,
+						oil = true,
+						whichkey = true,
+						nvim_notify = true,
+					},
+				},
+			})
+
+			-- vim.cmd([[ colorscheme darkvoid ]])
+			vim.cmd([[
+				highlight! LualineNormal guibg=none
+				highlight! LualineInsert guibg=none
+				highlight! LualineVisual guibg=none
+				highlight! LualineReplace guibg=none
+				highlight! LualineCommand guibg=none
+				highlight! LualineInactive guibg=none
+			]])
+		end,
+	},
+	{
+		"vague-theme/vague.nvim",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other plugins
+		config = function()
+			-- NOTE: you do not need to call setup if you don't want to.
+			require("vague").setup({
+				transparent = true,
+			})
+			-- vim.cmd("colorscheme vague")
+		end,
+	},
+	{
+		"embark-theme/vim",
+		lazy = false,
+		priority = 1000,
+		name = "embark",
+		config = function()
+			-- require("embark").setup({
+			-- 	transparent = true,
+			-- })
+
+			-- vim.cmd.colorscheme("embark")
+			-- vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+		end,
+	},
+	{
+		"deparr/tairiki.nvim",
+		lazy = false,
+		priority = 1000, -- recommended if you use tairiki as your default theme
+		config = function()
+			require("tairiki").setup({
+				palette = "dimmed", -- main palette, available options: dark, light, dimmed, tomorrow, light_legacy
+				default_dark = "dark",
+				default_light = "light",
+				transparent = true,
+			})
+
+			-- vim.cmd.colorscheme("tairiki")
+		end,
+	},
+	{
+		"mcauley-penney/techbase.nvim",
+		config = function(_, opts)
+			-- vim.cmd.colorscheme("techbase")
+		end,
+		priority = 1000,
+	},
+
+	{
+		"kuri-sun/yoda.nvim",
+		-- config = function(_, opts)
+		-- 	require("yoda").setup({
+		-- 		-- Set light or dark variant
+		-- 		theme = "dark", -- "dark" or "light"
+		--
+		-- 		-- Style options
+		-- 		italic_comments = true,
+		-- 		transparent_background = true,
+		-- 	})
+		-- end,
+		priority = 1000,
+	},
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
+		priority = 1000,
+
+		config = function(_, opts)
+			require("cyberdream").setup({
+				-- Set light or dark variant
+				variant = "dark", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+
+				-- Enable transparent background
+				transparent = true,
+			})
+
+			-- vim.cmd("colorscheme cyberdream")
+		end,
+	},
+	{
+		"adibhanna/yukinord.nvim",
+		priority = 1000,
+		config = function()
+			require("yukinord").setup({
+				transparent = true, -- Enable transparent background
+				transparent_sidebar = true, -- Enable transparent background for sidebars (NvimTree, terminal, etc.)
+			})
+
+			-- vim.cmd([[colorscheme yukinord]])
+		end,
+	},
+
+	{
+		"nendix/zen.nvim",
+		lazy = false,
+		priority = 1000,
+
+		config = function()
+			require("zen").setup({
+				variant = "dark", -- "dark" or "light"
+				undercurl = true,
+				transparent = true,
+			})
+
+			-- vim.cmd.colorscheme("zen")
+		end,
+	},
+	{
+		"metalelf0/black-metal-theme-neovim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("black-metal").setup({
+				-- optional configuration here
+				-- Can be one of: bathory | burzum | dark-funeral | darkthrone | emperor | gorgoroth | immortal | impaled-nazarene | khold | marduk | mayhem | nile | taake | thyrfing | venom | windir
+				theme = "bathory",
+				transparent = true,
+			})
+			require("black-metal").load()
 		end,
 	},
 }

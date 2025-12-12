@@ -31,3 +31,5 @@ end
 
 # Created by `pipx` on 2025-07-01 00:05:37
 set PATH $PATH /home/egn/.local/bin
+
+# source ~/.config/fish/tokyonight_moon.fish

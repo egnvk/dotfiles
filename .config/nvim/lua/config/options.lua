@@ -25,14 +25,22 @@ end
 
 vim.filetype.add({
 	extension = {
-		env = "dotenv",
+		-- env = "dotenv",
+		-- env = "sh",
+		env = "dosini",
 	},
 	filename = {
-		[".env"] = "dotenv",
-		["env"] = "dotenv",
+		-- [".env"] = "dotenv",
+		-- ["env"] = "dotenv",
+		-- [".env"] = "sh",
+		-- ["env"] = "sh",
+		[".env"] = "dosini",
+		["env"] = "dosini",
 	},
 	pattern = {
 		["[jt]sconfig.*.json"] = "jsonc",
-		["%.env%.[%w_.-]+"] = "dotenv",
+		-- ["%.env%.[%w_.-]+"] = "dotenv",
+		-- ["%.env%.[%w_.-]+"] = "sh",
+		["%.env%.[%w_.-]+"] = "dosini",
 	},
 })
