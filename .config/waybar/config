@@ -1,0 +1,152 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+
+    "modules-left": ["sway/workspaces"],
+    "modules-right": ["group/hardware", "group/controls", "clock"],
+
+    // Hardware group: CPU, temperature, memory
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "temperature", "memory"]
+    },
+
+    // Controls group: volume, backlight, network, battery, language
+    "group/controls": {
+        "orientation": "horizontal",
+        "modules": ["pulseaudio", "backlight", "network", "battery", "sway/language"]
+        // "modules": ["pulseaudio", "backlight", "network", "battery", "custom/language"]
+    },
+
+    // Workspace icons:
+    // ● — focused (active)
+    // ○ — default (inactive)
+    "sway/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "focused": "●",
+            "default": "○"
+        }
+    },
+
+    // CPU usage:
+    // 󰍛 — static processor icon
+    "cpu": {
+        "format": "󰍛 {usage}%",
+        "interval": 5
+    },
+
+    // Temperature icons by level:
+    // 󱃃 — cold (0-25°C)
+    // 󰔐 — cool (25-40°C)
+    // 󰔏 — normal (40-50°C)
+    // 󱃂 — warm (50-65°C)
+    // 󰸁 — hot (65°C+)
+    "temperature": {
+        "format": "{icon} {temperatureC}°C",
+        // "format-icons": ["󱃃", "󰔐", "󰔏", "󱃂", "󰸁"],
+        "format-icons": ["", "", "", "", ""], 
+        "critical-threshold": 75,
+        "interval": 5
+    },
+
+    // Network icons by signal strength:
+    // 󰤯 — very weak (0-20%)
+    // 󰤟 — weak (20-40%)
+    // 󰤢 — medium (40-60%)
+    // 󰤥 — good (60-80%)
+    // 󰤨 — excellent (80-100%)
+    // 󰤭 — disconnected
+    "network": {
+        "interface": "wlan0",
+        "format-wifi": "{icon} {signalStrength}%",
+        "format-disconnected": "󰤭  off",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "tooltip-format-wifi": "{essid}\n↓ {bandwidthDownBits}  ↑ {bandwidthUpBits}"
+    },
+
+    // Battery icons by charge level:
+    // 󰂎 — empty (0-10%)
+    // 󰁺 — very low (10-20%)
+    // 󰁻 — low (20-30%)
+    // 󰁼 — (30-40%)
+    // 󰁽 — (40-50%)
+    // 󰁾 — (50-60%)
+    // 󰁿 — (60-70%)
+    // 󰂀 — (70-80%)
+    // 󰂁 — (80-90%)
+    // 󰂂 — (90-100%)
+    // 󰁹 — full
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-full": "󰁹 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
+        "interval": 30
+    },
+
+    // Memory icons by usage level (server):
+    //  — static icon
+    "memory": {
+        "format": "{icon} {percentage}%",
+        "format-icons": [" "],
+        "interval": 5
+    },
+
+    // Volume icons by level:
+    // 󰕿 — low (0-30%)
+    // 󰖀 — medium (30-70%)
+    // 󰕾 — high (70-100%)
+    // 󰝟 — muted
+    //  — headphone
+    //  — hands-free
+    //  — headset
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 muted",
+        "format-icons": {
+            "default": ["󰕿", "󰕿", "󰕿", "󰖀", "󰖀", "󰖀", "󰖀", "󰕾", "󰕾", "󰕾"],
+	          "headphone": "",
+			      "hands-free": "",
+			      "headset": "",
+        }
+    },
+
+    // Backlight icons by brightness level:
+    // 󰃞 — low (0-25%)
+    // 󰃟 — medium-low (25-50%)
+    // 󰃝 — medium-high (50-75%)
+    // 󰃠 — high (75-100%)
+    "backlight": {
+        "format": "{icon} {percent}%",
+				"format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
+    },
+
+    // Keyboard layout:
+    // 󰌌 — static keyboard icon
+    // Click to switch layout
+     "sway/language": {
+         "format": "󰌌 {short}",
+         "format-en": "󰌌 en",
+         "format-ru": "󰌌 ru",
+         "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+     },
+
+    // "custom/language": {
+    //     "exec": "swaymsg -t get_inputs -m | while read -r line; do echo \"$line\" | grep -oP '\"xkb_active_layout_name\": \"\\K[^\"]+' | head -1 | sed 's/English.*/en/;s/Russian.*/ru/'; done",
+    //     "format": "󰌌 {}",
+    //     "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    // },
+    // "custom/language": {
+    //    "exec": "~/.config/waybar/scripts/language.sh",
+    //    "interval": 1,
+   //     "format": "󰌌 {}",
+     //   "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    //},
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "tooltip-format": "{:%Y-%m-%d}"
+    }
+}
