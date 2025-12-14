@@ -53,3 +53,23 @@ window#waybar {
 #battery.critical {
     color: #e9573f;
 }
+
+/* Pomodoro timer (tomat) */
+#custom-tomat {
+    padding: 0 10px;
+}
+
+#custom-tomat.work {
+    color: #a0d468;
+}
+
+#custom-tomat.break,
+#custom-tomat.long-break {
+    color: #e9573f;
+}
+
+#custom-tomat.work-paused,
+#custom-tomat.break-paused,
+#custom-tomat.long-break-paused {
+    color: #888888;
+}

@@ -9,6 +9,7 @@ if not status is-interactive
 end
 
 set --g -x fish_greeting ''
+set -gx STARSHIP_CONFIG ~/.config/starship/starship.toml
 starship init fish | source
 
 export EDITOR=nvim

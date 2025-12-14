@@ -46,13 +46,18 @@ client.urgent           #666666 #444444    #ffffff #444444   #666666
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg ~/.wallpapers/mountain-sunrise.jpg fill
 output * bg ~/.wallpapers/mountain-sunrise.jpg fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
+
+# Laptop display (below external monitor)
+output eDP-1 resolution 2880x1800 scale 2 position 0,1440
+
+# External monitor (above laptop) - USB-C/DisplayPort
+# Max resolution 2K @ 144Hz, positioned at top
+output DP-1 resolution 2560x1440@144Hz position 0,0
+output DP-2 resolution 2560x1440@144Hz position 0,0
+
+# When external monitor disconnects, workspaces automatically move to remaining monitor (sway default behavior)
+
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration

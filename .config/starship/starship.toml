@@ -3,7 +3,7 @@
 palette = "catppuccin_macchiato"
 # palette = "gruvbox_dark"
 
-format = """$username\
+format = """$username \
 $os\
 $directory\
 $all"""
@@ -17,9 +17,12 @@ empty_symbol = "❗ "
 
 [username]
 style_user = "bold green"
+style_root = "bold bright-white"
+format = "[$user]($style)"
 show_always = true
 
 [os]
+style = "white"
 disabled = false
 
 [os.symbols]

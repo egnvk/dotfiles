@@ -4,7 +4,7 @@
     "height": 30,
 
     "modules-left": ["sway/workspaces"],
-    "modules-right": ["group/hardware", "group/controls", "clock"],
+    "modules-right": ["group/hardware", "group/controls", "clock", "custom/tomat"],
 
     // Hardware group: CPU, temperature, memory
     "group/hardware": {
@@ -45,6 +45,7 @@
     // 󰸁 — hot (65°C+)
     "temperature": {
         "format": "{icon} {temperatureC}°C",
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
         // "format-icons": ["󱃃", "󰔐", "󰔏", "󱃂", "󰸁"],
         "format-icons": ["", "", "", "", ""], 
         "critical-threshold": 75,
@@ -148,5 +149,17 @@
     "clock": {
         "format": "{:%I:%M %p}",
         "tooltip-format": "{:%Y-%m-%d}"
+    },
+
+    // Pomodoro timer (tomat)
+    // Left click: pause/resume
+    // Right click: skip to next phase
+    "custom/tomat": {
+        "exec": "tomat status",
+        "interval": 1,
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "tomat toggle",
+        "on-click-right": "tomat skip"
     }
 }
