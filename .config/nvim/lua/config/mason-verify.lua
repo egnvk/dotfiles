@@ -24,24 +24,24 @@ function M.verify_tools()
 	print("")
 	local mason_tools = {
 		-- LSP Servers (Mason-managed)
-		"gopls",
+		-- "gopls",
 		"lua-language-server",
 		"rust-analyzer",
 		"typescript-language-server",
 		-- "intelephense",
-		"zls",
+		-- "zls",
 
 		-- Formatters (Mason-managed)
 		"stylua",
 		"prettierd",
-		"goimports",
-		"black",
-		"isort",
+		-- "goimports",
+		-- "black",
+		-- "isort",
 		"shfmt",
-		"pint",
+		-- "pint",
 
 		-- Linters (Mason-managed)
-		"golangci-lint",
+		-- "golangci-lint",
 		"eslint_d",
 		"luacheck",
 		"shellcheck",
@@ -49,7 +49,7 @@ function M.verify_tools()
 
 	local system_tools = {
 		-- System tools (not managed by Mason)
-		"gofmt", -- Comes with Go installation
+		-- "gofmt", -- Comes with Go installation
 		"rustfmt", -- Comes with Rust installation
 	}
 
