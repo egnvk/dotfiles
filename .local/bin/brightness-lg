@@ -1,0 +1,2 @@
+#!/bin/bash
+ddcutil --sn 107NTYTE0138 setvcp 10 "$1"

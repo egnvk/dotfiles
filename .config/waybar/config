@@ -4,7 +4,8 @@
     "height": 30,
 
     "modules-left": ["sway/workspaces"],
-    "modules-right": ["group/hardware", "group/controls", "clock", "custom/tomat"],
+    "modules-center": ["custom/tomat"],
+    "modules-right": ["group/hardware", "group/controls", "clock"],
 
     // Hardware group: CPU, temperature, memory
     "group/hardware": {
