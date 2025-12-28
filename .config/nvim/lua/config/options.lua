@@ -11,6 +11,7 @@ set.tabstop = 2
 set.shiftwidth = 2
 
 set.swapfile = false
+set.sessionoptions:remove("blank")
 
 set.splitbelow = true -- force all horizontal splits to go below current window
 set.splitright = true

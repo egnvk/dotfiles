@@ -65,13 +65,14 @@ return {
 	},
 	task = {
 		Canceled = " ",
-		Failure = " ",
+		-- Failure = " ",
+		Failure = " ",
 		Success = " ",
 		Running = " ",
 	},
 	diagnostics = {
 		-- Error = " ",
-		Error = "",
+		Error = " ",
 		Warning = " ",
 		Info = " ",
 		Hint = " ",
