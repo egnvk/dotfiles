@@ -70,7 +70,8 @@ return {
 		Running = " ",
 	},
 	diagnostics = {
-		Error = " ",
+		-- Error = " ",
+		Error = "",
 		Warning = " ",
 		Info = " ",
 		Hint = " ",

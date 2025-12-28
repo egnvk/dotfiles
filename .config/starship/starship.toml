@@ -1,6 +1,7 @@
 # Sets user-defined palette
 # Palettes must be defined _after_ this line
-palette = "catppuccin_macchiato"
+# palette = "catppuccin_macchiato"
+palette = "monochrome"
 # palette = "gruvbox_dark"
 
 format = """$username \
@@ -16,17 +17,30 @@ unknown_symbol = "❓ "
 empty_symbol = "❗ "
 
 [username]
-style_user = "bold green"
-style_root = "bold bright-white"
+style_user = "bold sapphire"
+style_root = "bold red"
 format = "[$user]($style)"
 show_always = true
 
 [os]
-style = "white"
+style = "blue"
 disabled = false
 
 [os.symbols]
-Arch = "  "
+Arch = " "
+
+[directory]
+style = "bold sky"
+truncation_length = 3
+truncate_to_repo = true
+
+[character]
+success_symbol = "[❯](bold teal)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[](bold yellow)"
+vimcmd_replace_one_symbol = "[](bold peach)"
+vimcmd_replace_symbol = "[](bold peach)"
+vimcmd_visual_symbol = "[](bold mauve)"
 
 [package]
 disabled = true
@@ -167,3 +181,31 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+
+[palettes.monochrome]
+rosewater = "#d8b4b4"
+flamingo = "#d4a5a5"
+pink = "#c9a0c9"
+mauve = "#b48ead"
+red = "#bf616a"
+maroon = "#c97070"
+peach = "#d08770"
+yellow = "#ebcb8b"
+green = "#a3be8c"
+teal = "#8fbcbb"
+sky = "#88c0d0"
+sapphire = "#81a1c1"
+blue = "#5e81ac"
+lavender = "#b8c0d8"
+text = "#d8dee9"
+subtext1 = "#c8ced9"
+subtext0 = "#b8becc"
+overlay2 = "#6e7a8a"
+overlay1 = "#5e6a7a"
+overlay0 = "#4e5a6a"
+surface2 = "#4c566a"
+surface1 = "#434c5e"
+surface0 = "#3b4252"
+base = "#2e3440"
+mantle = "#272c36"
+crust = "#20242c"

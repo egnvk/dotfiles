@@ -46,7 +46,7 @@ client.urgent           #666666 #444444    #ffffff #444444   #666666
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.wallpapers/mountain-sunrise.jpg fill
+output * bg ~/.wallpapers/astronaut.jpg fill
 
 # Laptop display (below external monitor)
 output eDP-1 resolution 2880x1800 scale 2 position 0,1440
@@ -58,7 +58,8 @@ output DP-2 resolution 2560x1440@144Hz position 0,0
 
 # Bind workspaces to outputs
 workspace 1 output eDP-1
-workspace 2 output DP-1 DP-2
+workspace 2 output eDP-1
+workspace 3 output DP-1 DP-2
 
 # When external monitor disconnects, workspaces automatically move to remaining monitor (sway default behavior)
 
@@ -230,7 +231,7 @@ exec_always gsettings set org.gnome.desktop.interface cursor-size 24
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+    # bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
@@ -304,5 +305,10 @@ bindsym $mod+r mode "resize"
 bar {
     swaybar_command waybar
 }
+
+# Auto-start applications on specific workspaces
+exec swaymsg 'workspace 1; exec kitty'
+exec swaymsg 'workspace 2; exec kitty'
+exec swaymsg 'workspace 3; exec kitty'
 
 include /etc/sway/config.d/*
