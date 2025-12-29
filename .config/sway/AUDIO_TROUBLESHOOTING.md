@@ -97,16 +97,58 @@ This config sets priorities so Mic2 (headset mic) has higher priority than Mic1:
 }
 ```
 
-### Auto-Switch Profile Script
+### Auto-Switch Profile (Built-in WirePlumber)
 
-**File:** `~/.config/wireplumber/scripts/auto-switch-profile.lua`
+WirePlumber 0.5+ has built-in profile switching. No custom script needed.
 
-This script automatically switches between Speaker and Headphones profiles when headphones are connected/disconnected:
+**Key settings in** `~/.config/wireplumber/wireplumber.conf.d/51-prefer-speaker.conf`:
 
-```lua
--- Switches between profiles:
--- "HiFi (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)" - when headphones connected
--- "HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)" - when headphones disconnected
+```conf
+# Enable automatic profile and port switching
+{
+  matches = [
+    { device.name = "alsa_card.pci-0000_00_1f.3-platform-skl_hda_dsp_generic" }
+  ]
+  actions = {
+    update-props = {
+      api.acp.auto-profile = true
+      api.acp.auto-port = true
+    }
+  }
+}
+```
+
+**Priority settings** (higher = preferred):
+- HDMI outputs: 100 (lowest - won't steal audio)
+- Mic1 (Digital): 1000
+- Mic2 (Stereo/Headset): 2000
+- Speaker: 2500
+- Headphones: 3000 (highest - always preferred when connected)
+
+## Problem: Profile Not Switching When Headphones Connected
+
+### Symptoms
+- Headphone jack detected (`amixer -c 0 cget numid=12` shows `values=on`)
+- But audio still plays through speakers
+- `wpctl status` shows Speaker as default, no Headphones sink
+
+### Root Cause
+The audio profile doesn't switch from Speaker to Headphones profile automatically.
+
+### Manual Profile Switch
+
+```bash
+# Switch to Headphones profile
+pactl set-card-profile 49 'HiFi (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)'
+
+# Switch back to Speaker profile
+pactl set-card-profile 49 'HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)'
+```
+
+### Verify Active Profile
+
+```bash
+pactl list cards | grep "Active Profile"
 ```
 
 ## External Monitor Considerations
@@ -147,8 +189,8 @@ systemctl --user restart wireplumber pipewire
 
 | File | Purpose |
 |------|---------|
-| `~/.config/wireplumber/wireplumber.conf.d/51-prefer-speaker.conf` | Priority rules for audio nodes |
-| `~/.config/wireplumber/scripts/auto-switch-profile.lua` | Profile auto-switching script |
+| `~/.config/wireplumber/wireplumber.conf.d/51-prefer-speaker.conf` | Priority rules + auto-profile settings |
+| `~/.local/state/wireplumber/default-nodes` | Saved default sink/source (auto-managed) |
 
 ## Notes
 
